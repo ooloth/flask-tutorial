@@ -77,3 +77,9 @@ def login():
 		flash(error)
 
 	return render_template('auth/login.html')
+
+@bp.route('/logout')
+def logout():
+  # To log out, you need to remove the user id from the session. Then load_logged_in_user won’t load a user on subsequent requests.
+  session.clear()
+  return redirect(url_for('index'))
