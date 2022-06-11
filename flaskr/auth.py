@@ -10,7 +10,9 @@ from flaskr.db import get_db
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 @bp.before_app_request
+# Registers a function that runs before the view function, no matter what URL is requested.
 def load_logged_in_user():
+  # Checks if a user id is stored in the session and gets that user’s data from the database, storing it on g.user, which lasts for the length of the request. If there is no user id, or if the id doesn’t exist, g.user will be None.
 	user_id = session.get('user_id')
 
 	if user_id is None:
