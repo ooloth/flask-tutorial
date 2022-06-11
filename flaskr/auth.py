@@ -90,6 +90,7 @@ def login_required(view):
 	# This decorator returns a new view function that wraps the original view it’s applied to. The new function checks if a user is loaded and redirects to the login page otherwise. If a user is loaded the original view is called and continues normally. You’ll use this decorator when writing the blog views.
 	def wrapped_view(**kwargs):
 		if g.user is None:
+		  # When using a blueprint, the name of the blueprint is prepended to the name of the function, so the endpoint for the login function you wrote above is 'auth.login' because you added it to the 'auth' blueprint.
 			return redirect(url_for('auth.login'))
 
 		return view(**kwargs)
